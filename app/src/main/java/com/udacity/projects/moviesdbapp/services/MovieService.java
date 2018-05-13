@@ -22,7 +22,7 @@ public class MovieService {
 
    private static final String MOVIEDB_API_URL = "https://image.tmdb.org/t/p/";
 
-    private static final String MOVIEDB_API_KEY = "0ed08a1b3f4360b41d7eaad139c6b94b";
+    private static final String MOVIEDB_API_KEY = "";
 
     private static final String MOVIE_CONFIG_URL = "http://api.themoviedb.org/3/movie/popular";
 
