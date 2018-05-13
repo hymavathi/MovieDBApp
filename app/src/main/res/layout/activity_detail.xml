@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    tools:context="com.udacity.projects.moviesdbapp.DetailItemActivity">
 
-</LinearLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_image_height"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/poster_content_description"
+            />
+
+
+        <TextView
+            android:id="@+id/title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_edge_margin"
+            android:layout_marginStart="@dimen/activity_left_from_edge_margin"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_iv" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_view"
+            android:layout_marginStart="@dimen/activity_left_from_view"
+            android:layout_marginRight="@dimen/activity_right_from_edge_margin"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_iv"
+            android:textAlignment="gravity"
+            android:text="Title"
+            android:layout_marginEnd="@dimen/activity_right_from_edge_margin"/>
+
+        <TextView
+            android:id="@+id/release_date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_edge_margin"
+            android:layout_marginStart="@dimen/activity_left_from_edge_margin"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            android:textStyle="bold"
+            android:text="Released On"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv" />
+
+        <TextView
+            android:id="@+id/release_date_tv"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/activity_left_from_view"
+            android:layout_marginStart="@dimen/activity_left_from_view"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv"
+            android:layout_marginRight="@dimen/activity_right_from_edge_margin"
+            android:layout_marginEnd="@dimen/activity_right_from_edge_margin"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textAlignment="gravity"
+
+            />
+
+        <TextView
+            android:id="@+id/vote_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_edge_margin"
+            android:layout_marginStart="@dimen/activity_left_from_edge_margin"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            android:textStyle="bold"
+            android:text="Avg rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/release_date_tv" />
+
+        <TextView
+            android:id="@+id/vote_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_view"
+            android:layout_marginStart="@dimen/activity_left_from_view"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/release_date_tv"
+            android:layout_marginRight="@dimen/activity_right_from_edge_margin"
+            android:layout_marginEnd="@dimen/activity_right_from_edge_margin"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+
+        <TextView
+            android:id="@+id/plot_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_edge_margin"
+            android:layout_marginStart="@dimen/activity_left_from_edge_margin"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            android:textStyle="bold"
+            android:text="Summary Plot"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vote_tv" />
+
+        <TextView
+            android:id="@+id/plot_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_left_from_view"
+            android:layout_marginStart="@dimen/activity_left_from_view"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vote_tv"
+            android:layout_marginRight="@dimen/activity_right_from_edge_margin"
+            android:layout_marginEnd="@dimen/activity_right_from_edge_margin"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>

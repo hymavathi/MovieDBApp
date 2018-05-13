@@ -1,4 +1,4 @@
-package com.udacity.projects.moviesdbapp.adapters;
+package com.udacity.projects.moviesdbapp.com.udacity.projects.moviesdbapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,10 +8,13 @@ public class MoviesRestResponse {
 
     @SerializedName("page")
     private int page;
+
     @SerializedName("total_results")
     private long totalResults;
+
     @SerializedName("total_pages")
     private int totalPages;
+
     @SerializedName("results")
     private List<Movie> results;
 

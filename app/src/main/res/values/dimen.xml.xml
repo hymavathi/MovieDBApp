@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_left_from_edge_margin">8dp</dimen>
+    <dimen name="activity_left_from_view">120dp</dimen>
+    <dimen name="activity_top_margin">40dp</dimen>
+    <dimen name="activity_image_height">200dp</dimen>
+    <dimen name="activity_right_from_edge_margin">2dp</dimen>
+
+</resources>
