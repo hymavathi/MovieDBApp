@@ -1,4 +1,4 @@
-package com.udacity.projects.moviesdbapp.com.udacity.projects.moviesdbapp.model;
+package com.udacity.projects.moviesdbapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

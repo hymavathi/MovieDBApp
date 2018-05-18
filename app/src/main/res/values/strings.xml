@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MoviesDBApp</string>
     <string name="poster_content_description">Description</string>
+    <string name="title">Title</string>
+    <string name="releaseDate">Released On</string>
+    <string name="rating">Avg Rating</string>
+    <string name="summary">Summary Plot</string>
+
 </resources>

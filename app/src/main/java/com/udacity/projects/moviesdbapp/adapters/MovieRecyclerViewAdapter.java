@@ -1,18 +1,17 @@
 package com.udacity.projects.moviesdbapp.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.udacity.projects.moviesdbapp.R;
-import com.udacity.projects.moviesdbapp.com.udacity.projects.moviesdbapp.model.Movie;
-import com.udacity.projects.moviesdbapp.services.MovieService;
+import com.udacity.projects.moviesdbapp.model.Movie;
+import com.udacity.projects.moviesdbapp.util.MovieUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +34,15 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
     // inflates the cell layout from xml when needed
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recycleview_item, parent, false);
         return new MovieViewHolder(view);
     }
 
     // binds the data to the textview in each cell
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = mData.get(position);
         holder.myImageView.setImageURI(Uri.parse(movie.getPosterPath()));
         holder.bind(movie);
@@ -51,7 +51,8 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
     // total number of cells
     @Override
     public int getItemCount() {
-        return mData.size();
+
+        return mData != null ? mData.size() : 0;
     }
 
 
@@ -74,7 +75,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         }
 
          void bind(Movie movie) {
-            MovieService.loadImage(context, movie.getPosterPath(), myImageView);
+            MovieUtil.loadImage(context, movie.getPosterPath(), myImageView);
 
         }
     }
