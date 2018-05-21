@@ -4,8 +4,6 @@ public class AppConstants {
 
     public static final String MOVIE_INTENT_KEY = "MOVIE_INTENT";
 
-    public static final String MOVIEDB_API_URL = "https://image.tmdb.org/t/p/";
-
     public static final String MOVIEDB_API_KEY = "";
 
     public static final String MOVIE_BASE_URL = "http://api.themoviedb.org/3/movie/";

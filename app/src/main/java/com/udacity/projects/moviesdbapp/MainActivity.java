@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.udacity.projects.moviesdbapp.adapters.MovieRecyclerViewAdapter;
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
     private MovieRecyclerViewAdapter adapter;
     private static final int NUMBER_OF_COLUMNS = 2;
     private RecyclerView recyclerView;
-    MovieRecyclerViewAdapter.ItemClickListener itemClickListener;
+    //  MovieRecyclerViewAdapter.ItemClickListener itemClickListener;
+    ProgressBar progressBar;
 
     private int sort_order = MovieAsyncTask.POPULAR_SORT_ID;
 
@@ -34,11 +37,19 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
         // set up the RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.moviesrview);
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
+        // Check if Network is available before making a call to API.
         if (MovieUtil.isNetworkActive(this)) {
             new MovieAsyncTask().execute();
+
         } else {
+            Log.e(TAG, "onCreate: Network is not available ");
+
             Toast.makeText(getBaseContext(), "Network is not available", Toast.LENGTH_LONG).show();
 
         }
@@ -54,18 +65,24 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_popular_movies:
-                sort_order = MovieAsyncTask.POPULAR_SORT_ID;
-                new MovieAsyncTask().execute();
-                return true;
-            case R.id.menu_top_rated_movies:
-                sort_order = MovieAsyncTask.RATING_SORT_ID;
-                new MovieAsyncTask().execute();
-                return true;
+        if (MovieUtil.isNetworkActive(this)) {
 
-            default:
-                return super.onOptionsItemSelected(item);
+            switch (id) {
+                case R.id.menu_popular_movies:
+                    sort_order = MovieAsyncTask.POPULAR_SORT_ID;
+                    new MovieAsyncTask().execute();
+                    return true;
+                case R.id.menu_top_rated_movies:
+                    sort_order = MovieAsyncTask.RATING_SORT_ID;
+                    new MovieAsyncTask().execute();
+                    return true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        } else {
+            Toast.makeText(getBaseContext(), "Network is not available", Toast.LENGTH_LONG).show();
+            return false;
         }
     }
 
@@ -84,24 +101,37 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
         static final int RATING_SORT_ID = 2;
 
         @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+
+        @Override
         protected Object doInBackground(Void... voids) {
+            if (MovieUtil.isNetworkActive(MainActivity.this)) {
 
-            switch (sort_order) {
+                switch (sort_order) {
 
-                case MovieAsyncTask.POPULAR_SORT_ID:
-                    return MovieUtil.getPopularMovies();
-                case MovieAsyncTask.RATING_SORT_ID:
-                    return MovieUtil.getTopRatedMovies();
+                    case MovieAsyncTask.POPULAR_SORT_ID:
+                        return MovieUtil.getPopularMovies();
+                    case MovieAsyncTask.RATING_SORT_ID:
+                        return MovieUtil.getTopRatedMovies();
 
-                default:
-                    return MovieUtil.getPopularMovies();
+                    default:
+                        return MovieUtil.getPopularMovies();
 
+                }
+            } else {
+                Toast.makeText(getBaseContext(), "Network is not available", Toast.LENGTH_LONG).show();
+                return null;
             }
 
         }
 
         @Override
         protected void onPostExecute(final Object data) {
+            progressBar.setVisibility(View.INVISIBLE);
+
             adapter = new MovieRecyclerViewAdapter(MainActivity.this, (List<Movie>) data, new MovieRecyclerViewAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {

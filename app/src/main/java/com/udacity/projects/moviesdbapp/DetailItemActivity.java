@@ -1,7 +1,6 @@
 package com.udacity.projects.moviesdbapp;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +23,7 @@ public class DetailItemActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
       //  Bundle bundle = this.getIntent().getExtras();
-        if ((intent == null) && !intent.hasExtra(AppConstants.MOVIE_INTENT_KEY)) {
+        if ((intent == null) || !intent.hasExtra(AppConstants.MOVIE_INTENT_KEY)) {
             finish();
             return;
         }
