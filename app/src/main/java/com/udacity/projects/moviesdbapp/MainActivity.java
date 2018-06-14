@@ -2,6 +2,7 @@ package com.udacity.projects.moviesdbapp;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,8 +26,12 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
     private MovieRecyclerViewAdapter adapter;
     private static final int NUMBER_OF_COLUMNS = 2;
     private RecyclerView recyclerView;
-    //  MovieRecyclerViewAdapter.ItemClickListener itemClickListener;
     ProgressBar progressBar;
+
+    //For instance state save and restore
+    private static final String SORT_ORDER_KEY = "SORT_ORDER";
+    private static final String RV_POSITION_KEY = "RV_KEY";
+    private Parcelable parcelable;
 
     private int sort_order = MovieAsyncTask.POPULAR_SORT_ID;
 
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
 
         // Check if Network is available before making a call to API.
         if (MovieUtil.isNetworkActive(this)) {
+            if (savedInstanceState != null && savedInstanceState.containsKey(SORT_ORDER_KEY)) {
+                sort_order = savedInstanceState.getInt(SORT_ORDER_KEY);
+            }
             new MovieAsyncTask().execute();
 
         } else {
@@ -94,6 +102,28 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
         startActivity(detailsIntent);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SORT_ORDER_KEY , sort_order );
+        Log.d("onSaveInstanceState", "onSaveInstanceState()" + outState.getInt(SORT_ORDER_KEY));
+
+        if(recyclerView != null && recyclerView.getLayoutManager() != null) {
+            outState.putParcelable(RV_POSITION_KEY , recyclerView.getLayoutManager().onSaveInstanceState());
+        }
+    }
+
+   @Override
+   protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        if(savedInstanceState!= null) {
+           sort_order = savedInstanceState.containsKey(SORT_ORDER_KEY )? savedInstanceState.getInt(SORT_ORDER_KEY) : sort_order;
+           parcelable =  savedInstanceState.getParcelable(RV_POSITION_KEY);
+            Log.d(TAG, "onRestoreInstanceState: " + sort_order);
+        }
+       super.onRestoreInstanceState(savedInstanceState);
+
+   }
 
     private class MovieAsyncTask extends AsyncTask<Void, Void, Object> {
 
@@ -146,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this
                     , NUMBER_OF_COLUMNS));
             recyclerView.setAdapter(adapter);
+            recyclerView.getLayoutManager().onRestoreInstanceState(parcelable);
 
         }
     }

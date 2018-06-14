@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
      <item android:id="@+id/menu_popular_movies"
-        android:title="popular Movies"
+        android:title="@string/popular_menu"
          app:showAsAction="never"/>
 
     <item android:id="@+id/menu_top_rated_movies"
-        android:title="Top Rated"
+        android:title="@string/rated_menu"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_favorite_movies"
+        android:title="@string/fav_menu"
         app:showAsAction="never"/>
 </menu>

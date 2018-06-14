@@ -5,5 +5,14 @@
     <string name="releaseDate">Released On</string>
     <string name="rating">Avg Rating</string>
     <string name="summary">Summary Plot</string>
+    <string name="trailer">Trailers</string>
+
+    <string name="mark_favorite">MARK AS FAVORITE</string>
+
+    <!--Menu items -->
+    <string name="popular_menu">Most Popular</string>
+    <string name="rated_menu">Most Rated</string>
+    <string name="fav_menu">My Favorites</string>
+
 
 </resources>

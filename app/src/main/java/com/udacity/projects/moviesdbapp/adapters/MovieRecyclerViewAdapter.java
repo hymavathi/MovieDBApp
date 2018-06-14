@@ -32,7 +32,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         this.mClickListener = itemClickListener;
     }
 
-    // inflates the cell layout from xml when needed
+
     @Override
     @NonNull
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

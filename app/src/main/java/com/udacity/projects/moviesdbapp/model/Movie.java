@@ -55,6 +55,7 @@ public class Movie implements Parcelable {
         dest.writeString(backdropPath);
         dest.writeString(overview);
         dest.writeString(releaseDate);
+        dest.writeInt(isFavorite ? 1: 0);
     }
 
     public Movie() {
@@ -101,6 +102,10 @@ public class Movie implements Parcelable {
 
     @SerializedName("release_date")
     private String releaseDate;
+
+    private boolean isFavorite;
+    private List<Video> videos;
+    private List<Review> reviews;
 
     //getters and setters
 
@@ -214,5 +219,29 @@ public class Movie implements Parcelable {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

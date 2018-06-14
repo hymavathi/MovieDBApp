@@ -10,7 +10,13 @@ public class AppConstants {
 
     public static final String IMG_BASE_URL = "http://image.tmdb.org/t/p/w780/";
 
+    public static final String MOVIE_VIDEOS_URL_POSTFIX = "/videos";
+
+    public static final String MOVIE_REVIEWS_URL_POSTFIX = "/reviews";
+
     public static final String POPULAR_MOVIE_URL = MOVIE_BASE_URL + "popular";
 
     public static final String TOP_RATED_MOVIE_URL = MOVIE_BASE_URL + "top_rated";
+
+
 }
